@@ -18,7 +18,7 @@ void push(stack_t **stack, unsigned int line_number, char *arg)
 	/* assume code to get argument from line_number */
 
 	/* check if argument is valid */
-	if (!args || !atoi(args))
+	if (!arg || !atoi(arg))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
