@@ -22,7 +22,7 @@ unsigned int line_number)
 
 	for (i = 0; instructions[i].opcode; i++) /* iterate instructions */
 	{
-		if (strcmp(intructions[i].opcode, opcode) == 0)
+		if (strcmp(instructions[i].opcode, opcode) == 0)
 		{
 			if (strcmp(opcode, "push") == 0)
 				((void (*)(stack_t **, unsigned int, char *))instructions[i].f(stack, line_number, arg);
