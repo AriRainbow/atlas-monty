@@ -15,10 +15,24 @@ unsigned int line_number)
 {
 	int i; /* loop counter */
 
+	instruction_with_arg_t instructions_with_arg[] = {
+		{"push", push},
+		{NULL, NULL}
+	};
+
 	instruction_t instructions[] = {
-		{"push", (void (*)(stack_t **, unsigned int, char *))push},
 		{"pall", pall}, /* maps 'pall' to pall function */
-		{NULL, NULL}}; /* end of instructions array */
+		{NULL, NULL}
+	};
+
+	for (i = 0; instructions_with_arg[i].opcode; i++)
+	{
+		if (strcmp(instructions_with_arg[i].opcode, opcode) == 0)
+		{
+			instructions_with_arg[i].f(stack, line_number, arg);
+			return;
+		}
+	}
 
 	for (i = 0; instructions[i].opcode; i++) /* iterate instructions */
 	{
