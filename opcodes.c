@@ -11,7 +11,7 @@
  * Description: Pushes an integer onto the stack
  * If argument is invalid, prints an error message and exits
  */
-void push(stack_t **stack, unsigned int line_number, char *args)
+void push(stack_t **stack, unsigned int line_number, char *arg)
 {
 	stack_t *new_node; /* new node to be added to the stack */
 

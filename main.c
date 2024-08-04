@@ -16,7 +16,7 @@ unsigned int line_number)
 	int i; /* loop counter */
 
 	instruction_t instructions[] = {
-		{"push", (void (*)(stack_t **, unsigned int))push},
+		{"push", (void (*)(stack_t **, unsigned int, char *))push},
 		{"pall", pall}, /* maps 'pall' to pall function */
 		{NULL, NULL}}; /* end of instructions array */
 
