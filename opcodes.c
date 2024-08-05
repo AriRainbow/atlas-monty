@@ -65,3 +65,21 @@ void pall(stack_t **stack, unsigned int line_number)
 		temp = temp->next;
 	}
 }
+
+/**
+ * free_stack - Frees the stack
+ * @stack: Pointer to the stack
+ *
+ * Description: Frees all nodes in the stack
+ */
+void free_stack(stack_t *stack)
+{
+	stack_t *temp;
+
+	while (stack)
+	{
+		temp = stack;
+		stack = stack->next;
+		free(temp);
+	}
+}

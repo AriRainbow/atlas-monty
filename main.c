@@ -38,11 +38,8 @@ unsigned int line_number)
 	{
 		if (strcmp(instructions[i].opcode, opcode) == 0)
 		{
-			if (strcmp(instructions[i].opcode, opcode) == 0)
-			{
-				instructions[i].f(stack, line_number);
-				return;
-			}
+			instructions[i].f(stack, line_number);
+			return;
 		}
 	}
 
