@@ -17,11 +17,7 @@ unsigned int line_number)
 
 	instruction_with_arg_t instructions_with_arg[] = {
 		{"push", push},
-		{NULL, NULL}
-	};
-
-	instruction_t instructions[] = {
-		{"pall", pall}, /* maps 'pall' to pall function */
+		{"pall", pall},
 		{NULL, NULL}
 	};
 
@@ -29,16 +25,10 @@ unsigned int line_number)
 	{
 		if (strcmp(instructions_with_arg[i].opcode, opcode) == 0)
 		{
-			instructions_with_arg[i].f(stack, line_number, arg);
-			return;
-		}
-	}
-
-	for (i = 0; instructions[i].opcode; i++) /* iterate instructions */
-	{
-		if (strcmp(instructions[i].opcode, opcode) == 0)
-		{
-			instructions[i].f(stack, line_number);
+			if (strcmp(opcode, "push") == 0)
+				instructions_with_arg[i].f(stack, line_number, arg);
+			else
+				instructions_with_arg[i].f(stack, line_number);
 			return;
 		}
 	}
