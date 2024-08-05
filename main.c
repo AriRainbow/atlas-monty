@@ -24,7 +24,7 @@ unsigned int line_number)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
-		{"nop", nop}
+		{"nop", nop},
 		{NULL, NULL}
 	};
 
