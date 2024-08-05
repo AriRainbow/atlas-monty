@@ -43,6 +43,30 @@ void free_stack(stack_t *stack);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number)
+{
+	stack_t *first;
+	stack_t *second;
+	int sum;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, L%u: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	first = *stack;
+	second = (*stack)->next;
+
+	sum = first->n + second->n;
+
+	/* remove top element */
+	*stack = second;
+	(*stack)-> = sum;
+	(*stack)->prev = NULL;
+
+	free(first);
+}
 
 extern char *global_arg;
 
