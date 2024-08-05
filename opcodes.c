@@ -161,7 +161,7 @@ void add(stack_t **stack, unsigned int line_number)
 
         /* remove top element */
         *stack = second;
-        (*stack)-> = sum;
+        (*stack)->n = sum;
         (*stack)->prev = NULL;
 
         free(first);
