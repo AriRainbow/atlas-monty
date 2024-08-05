@@ -110,3 +110,36 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	free(temp);
 }
+
+/**
+ * swap - Swaps the top two elements of the stack
+ * @stack: Double pointer to top of stack
+ * @line_number: Line number in bytecode file
+ *
+ * Description: If stack contains fewer than two elements, prints error message and exits
+ */
+void swap(stack_t **stack, unsigned int line_number)
+{
+	stack_t *first;
+	stack_t *second;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	first = *stack;
+	second = (*stack)->next;
+
+	first->next = second->next;
+	first->prev = second;
+	if (second->next)
+		second->next->prev = first;
+
+	second->next = first;
+	second->prev = NULL;
+	*stack = second;
+}
+
+

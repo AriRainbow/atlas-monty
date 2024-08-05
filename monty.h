@@ -42,6 +42,7 @@ void execute_instruction(char *opcode, char *arg, stack_t **stack, unsigned int 
 void free_stack(stack_t *stack);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
 
 extern char *global_arg;
 
