@@ -96,5 +96,6 @@ int main(int argc, char **argv)
 
 	free(line); /* free allocated memory */
 	fclose(file); /* close file */
+	free_stack(stCK);
 	return (EXIT_SUCCESS); 
 }
