@@ -20,6 +20,7 @@ unsigned int line_number)
 	instruction_t instructions[] = {
 		{"push", push_wrapper},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 
