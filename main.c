@@ -21,6 +21,7 @@ unsigned int line_number)
 		{"push", push_wrapper},
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}
 	};
 
