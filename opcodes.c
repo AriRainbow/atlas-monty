@@ -7,6 +7,7 @@
  * push - Pushes an element to the stack
  * @stack: Double pointer to top of stack
  * @line_number: Line number in the bytecode file
+ * @arg: Argument to push into stack
  *
  * Description: Pushes an integer onto the stack
  * If argument is invalid, prints an error message and exits
@@ -54,32 +55,14 @@ void push(stack_t **stack, unsigned int line_number, char *arg)
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp = *stack; /* temp pointer to traverse stack */
+	stack_t *current = *stack;
 	
 	(void)line_number; /* unused variable */
 
 	/* traverse stack and print each element */
-	while (temp)
+	while (current)
 	{
-		printf("%d\n", temp->n);
-		temp = temp->next;
-	}
-}
-
-/**
- * free_stack - Frees the stack
- * @stack: Pointer to the stack
- *
- * Description: Frees all nodes in the stack
- */
-void free_stack(stack_t *stack)
-{
-	stack_t *temp;
-
-	while (stack)
-	{
-		temp = stack;
-		stack = stack->next;
-		free(temp);
+		printf("%d\n", current->n);
+		current = current->next;
 	}
 }

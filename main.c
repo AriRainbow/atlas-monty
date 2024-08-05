@@ -14,21 +14,21 @@ void execute_instruction(char *opcode, char *arg, stack_t **stack,
 unsigned int line_number)
 {
 	int i; /* loop counter */
+	/* store argument globally for use in push_wrapper */
+	global_arg = arg;
 
-	instruction_with_arg_t instructions_with_arg[] = {
-		{"push", push},
+	instruction_t instructions[] = {
+		{"push", push_wrapper},
 		{"pall", pall},
 		{NULL, NULL}
 	};
 
-	for (i = 0; instructions_with_arg[i].opcode; i++)
+	for (i = 0; instructions[i].opcode; i++)
 	{
-		if (strcmp(instructions_with_arg[i].opcode, opcode) == 0)
+		if (strcmp(instructions[i].opcode, opcode) == 0)
 		{
-			if (strcmp(opcode, "push") == 0)
-				instructions_with_arg[i].f(stack, line_number, arg);
-			else
-				instructions_with_arg[i].f(stack, line_number);
+			/* call function without arg if not needed */
+			instructions[i].f(stack, line_number);
 			return;
 		}
 	}
@@ -47,7 +47,7 @@ unsigned int line_number)
  * executes each instruction
  * Handles errors related to file opening and argument count
  *
- * Return: EXIT_SUCCESS on success, EXIT_FAILURE on error
+ * Return: Always 0 (success)
  */
 int main(int argc, char **argv)
 {
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 	}
 
 	file = fopen(argv[1], "r"); /* open file for reading */
-	if (file == NULL) /* check if file opened successfully */
+	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
@@ -80,12 +80,11 @@ int main(int argc, char **argv)
 		arg = strtok(NULL, " \t\n"); /* extract argument */
 
 		if (opcode && opcode[0] != '#') /* ignore comments */
-			/* execute the instruction */
 			execute_instruction(opcode, arg, &stack, line_number);
 	}
 
 	free(line); /* free allocated memory */
 	fclose(file); /* close file */
 	free_stack(stack);
-	return (EXIT_SUCCESS); 
+	return (0); 
 }
